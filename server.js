@@ -1983,7 +1983,7 @@ app.post('/espera-silla/:idEvento', async (req, res) => {
     res.json({
       affectedRows: result.affectedRows
     })
-    res.sendStatus(200);
+    // res.sendStatus(200);
   } catch (e) {
     console.error('Error procesando solicitud:', e);
     res.sendStatus(400);
