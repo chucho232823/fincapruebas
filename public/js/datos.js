@@ -78,7 +78,10 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
       throw new Error('Error al poner silla en espera');
     }
 
-    console.log('✅ Silla espera correctamente');
+    const data = await response.json();
+    console.log('Filas afectadas: ', data.affectedRows);
+
+    console.log('Silla espera correctamente');
   } catch (err) {
     console.error('❌ Error en liberarSilla:', err);
   }

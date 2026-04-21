@@ -1970,14 +1970,19 @@ app.post('/espera-silla/:idEvento', async (req, res) => {
           s.enEsperaDesde = NOW()
       WHERE s.letra = ?
         AND e.idEvento = ?
-        AND m.numero = ?;
+        AND m.numero = ?
+        AND estado = 0 
+        AND bloqueada = 0 
+        AND enEspera = 0;
     `;
 
     const values = [letra, idEvento, numeroMesa];
-
     // Usamos await para ejecutar la consulta
     const [result] = await pool.query(query, values);
 
+    res.json({
+      affectedRows: result.affectedRows
+    })
     res.sendStatus(200);
   } catch (e) {
     console.error('Error procesando solicitud:', e);
