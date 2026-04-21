@@ -737,7 +737,8 @@ app.post('/datos', (req,res) => {
     const agrupadasPorMesa = reserva.agrupadasPorMesa;
     const tipoPago = reserva.tipoPago;
     const sillasBloqueadas = reserva.sillasBloqueadas;
-    res.render( 'datos' , {nombre, sembrado, listaMesaSilla, controlFila, tipo, consecutivas, agrupadasPorMesa, tipoPago, sillasBloqueadas} );
+    const eventoSeleccionado = reserva.eventoSeleccionado
+    res.render( 'datos' , {nombre, sembrado, listaMesaSilla, controlFila, tipo, consecutivas, agrupadasPorMesa, tipoPago, sillasBloqueadas, eventoSeleccionado} );
 })
 
 /**

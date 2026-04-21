@@ -984,6 +984,7 @@ compra.addEventListener('click', async () => {
 })
 
 console.log('evento recibido: ', window.evento);
+const eventoSeleccionado = window.evento;
 //console.log('id del Evento: ', window.evento.idEvento);
 //nombre que se recibira 
 const sembrado = window.evento.idEvento;
@@ -1138,7 +1139,8 @@ document.querySelector('.confirma-compra').addEventListener('click', function (e
             consecutivas: consecutivas,
             agrupadasPorMesa: agrupadasPorMesa,
             tipoPago: tipoPago,
-            sillasBloqueadas: sillasBloqueadas
+            sillasBloqueadas: sillasBloqueadas,
+            eventoSeleccionado: eventoSeleccionado
         });
         //Enviar los datos
         form.submit();

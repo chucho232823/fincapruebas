@@ -10,6 +10,7 @@ const consecutivas = window.consecutivas;
 const agrupadasPorMesa = window.agrupadasPorMesa;
 const tipoPago = window.tipoPago;
 const sillasBloqueadas = window.sillasBloqueadas;
+const eventoSeleccionado = window.eventoSeleccionado;
 let mesasJuntadas = [];
 let cancelarLiberacion = false;
 // console.log("tipo Pago",tipoPago);
@@ -98,6 +99,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
       });
       overlay.style.display = 'none';
       console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
+      console.log(`evento seleccionado: ${eventoSeleccionado}`);
       // const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
       await fetch(`/sembrado/${tipo.toLowerCase()}`, {
         method: 'POST',
@@ -105,7 +107,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          data: JSON.stringify(sembrado) // 👈 doble stringify
+          data: JSON.stringify(eventoSeleccionado) // 👈 doble stringify
         })
       });
     }
