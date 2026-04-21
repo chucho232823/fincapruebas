@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservas del Evento</title>
+  <link rel="stylesheet" href="/css/lista.css">
+</head>
+<body>
+  <h1>Reservas - <%= nombreEvento %></h1>
+
+  <% if (reservas.length === 0) { %>
+    <p>No hay reservas para este evento.</p>
+  <% } else { %>
+    <span style="font-weight: bold;">Da click sobre el ícono de boletos 🎟️ para más información</span>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Boletos</th>
+          <th>Pago</th>
+          <th>Estado</th>
+          <th>Código</th>
+          <th>Descargar Boleto</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reservas.forEach(r => { %>
+          <tr>
+            <td><%= r.nombre %> <%= r.apellido %></td>
+            <td><%= r.telefono %></td>
+            <td><%= r.boletos %> <span class="ver" id = "<%= r.codigo %>">🎟️</span>
+                <% if(r.juntar != "") {%>
+                  <span>
+                    Juntar
+                  </span>
+                <% } %>
+            </td>
+            <td><%= r.tipoPago %></td>
+            <td><%= r.estado %></td>
+            <td><%= r.codigo %></td>
+            <td><span class="descargar" id = "<%= r.codigo %>" >🎟️</span></td>
+            <td><span class="borrar" id = "<%= r.codigo %>" >🗑️</span></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <div class="botones">
+    <span id="volver">VOLVER</span>
+    <button class="btn-excel" onclick="generarExcel()">DESCARGAR EXCEL</button>
+  </div>
+  
+
+
+  <div id="boletoModal" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+                             background:white; padding:20px; border:1px solid #ccc; z-index:1000; width:300px;">
+      <h3>Información del Boleto</h3>
+      <div id="contenidoBoleto"></div>
+      <button onclick="cerrarModal()">Cerrar</button>
+  </div>
+
+  <script>
+    const reservas = <%- JSON.stringify(reservas) %>;
+    const nombreEvento = "<%= nombreEvento %>";
+    const fecha = "<%= fecha %>";
+    const idEvento = "<%= idEvento %>";
+    console.log(reservas);
+  </script>
+  <script src="/js/lista.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  
+</body>
+</html>
+
+
