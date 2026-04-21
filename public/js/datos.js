@@ -105,7 +105,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          data: JSON.stringify(eventoSeleccionado) // 👈 doble stringify
+          data: JSON.stringify(sembrado) // 👈 doble stringify
         })
       });
     }
