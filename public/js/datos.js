@@ -80,6 +80,25 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
 
     const data = await response.json();
     console.log('Filas afectadas: ', data.affectedRows);
+    if(data.affectedRows = 0){
+      alerta = await Swal.fire({
+          title: 'Finca la colorada dice:',
+          text:"Ups, Alguien más acaba de apartar una de estas sillas",
+          icon: 'info', // puede ser 'success', 'error', 'warning', 'info', 'question'
+          confirmButtonColor: '#68AAFC',
+          confirmButtonText: 'Volver al mapa',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          buttonsStyling: false,
+          customClass: {
+              popup: 'alert-popup',
+              title: 'alert-titulo',
+              confirmButton: 'alert-boton'
+          },
+      });
+      overlay.style.display = 'none';
+    }
+
 
     console.log('Silla espera correctamente');
   } catch (err) {
