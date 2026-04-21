@@ -63,7 +63,7 @@ const detalleFinal = Object.keys(controlFila).map(mesaId => {
 console.log(detalleFinal);
 
 console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
-console.log(`evento seleccionado: ${eventoSeleccionado}`);
+console.log('evento seleccionado:', eventoSeleccionado);
 /**
  * Poniendo sillas en espera
  */
