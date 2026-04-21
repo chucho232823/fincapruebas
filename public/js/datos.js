@@ -62,6 +62,8 @@ const detalleFinal = Object.keys(controlFila).map(mesaId => {
 
 console.log(detalleFinal);
 
+console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
+console.log(`evento seleccionado: ${eventoSeleccionado}`);
 /**
  * Poniendo sillas en espera
  */
@@ -98,8 +100,6 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           },
       });
       overlay.style.display = 'none';
-      console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
-      console.log(`evento seleccionado: ${eventoSeleccionado}`);
       // const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
       await fetch(`/sembrado/${tipo.toLowerCase()}`, {
         method: 'POST',
