@@ -1971,9 +1971,9 @@ app.post('/espera-silla/:idEvento', async (req, res) => {
       WHERE s.letra = ?
         AND e.idEvento = ?
         AND m.numero = ?
-        AND estado = 0 
-        AND bloqueada = 0 
-        AND enEspera = 0;
+        AND s.estado = 0 
+        AND s.bloqueada = 0 
+        AND s.enEspera = 0;
     `;
 
     const values = [letra, idEvento, numeroMesa];
