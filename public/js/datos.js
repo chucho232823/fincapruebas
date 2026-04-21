@@ -106,7 +106,8 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
     const data = await response.json();
     console.log('Filas afectadas: ', data.affectedRows);
     if(data.affectedRows === 0){
-      alerta = await Swal.fire({
+      console.log("antes sw")
+      await Swal.fire({
           title: 'Finca la colorada dice:',
           text:"Ups, Alguien más acaba de apartar una de estas sillas",
           icon: 'info', // puede ser 'success', 'error', 'warning', 'info', 'question'
@@ -121,7 +122,9 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
               confirmButton: 'alert-boton'
           },
       });
+      console.log("despues sw");
       overlay.style.display = 'none';
+      cancelarLiberacion = true;
       // const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
       enviarEventoASembrado(eventoSeleccionado);
     }
