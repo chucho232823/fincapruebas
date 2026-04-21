@@ -80,7 +80,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
 
     const data = await response.json();
     console.log('Filas afectadas: ', data.affectedRows);
-    if(data.affectedRows = 0){
+    if(data.affectedRows === 0){
       alerta = await Swal.fire({
           title: 'Finca la colorada dice:',
           text:"Ups, Alguien más acaba de apartar una de estas sillas",
@@ -98,7 +98,6 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
       });
       overlay.style.display = 'none';
     }
-
 
     console.log('Silla espera correctamente');
   } catch (err) {
