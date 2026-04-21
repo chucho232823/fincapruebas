@@ -97,7 +97,15 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           },
       });
       overlay.style.display = 'none';
-      const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
+      console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
+      // const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
+      await fetch(`/sembrado/${tipo.toLowerCase()}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sembrado)
+      });
     }
 
     console.log('Silla espera correctamente');
