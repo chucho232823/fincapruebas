@@ -64,6 +64,28 @@ console.log(detalleFinal);
 
 console.log(`sembrado: ${sembrado} tipo: ${tipo}`);
 console.log('evento seleccionado:', eventoSeleccionado);
+
+/**
+ * Volviendo al sembrado
+ * @param {*} eventoSeleccionado 
+ */
+function enviarEventoASembrado(eventoSeleccionado) {
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = `/sembrado/${eventoSeleccionado.tipo.toLowerCase()}`;
+
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'data';
+  input.value = JSON.stringify(eventoSeleccionado);
+
+  form.appendChild(input);
+  document.body.appendChild(form);
+
+  form.submit();
+  form.remove();
+}
+
 /**
  * Poniendo sillas en espera
  */
@@ -101,15 +123,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
       });
       overlay.style.display = 'none';
       // const response = await fetch(`/sembrado/${tipo.toLowerCase()}`);
-      await fetch(`/sembrado/${tipo.toLowerCase()}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          data: JSON.stringify(eventoSeleccionado) // 👈 doble stringify
-        })
-      });
+      enviarEventoASembrado(eventoSeleccionado);
     }
 
     console.log('Silla espera correctamente');
