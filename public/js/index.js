@@ -42,7 +42,7 @@ fetch("/listado-de-eventos")
             estado: evento.estado
         }
         datosEventos.push(ev);
-        if(!evento.estado === "cancelado"){
+        if(evento.estado === "venta"){
             // console.log(`Evento: ${evento.nombre} cancelado`)
             return;
         }
