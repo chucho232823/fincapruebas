@@ -277,13 +277,23 @@ listaMesaSilla.forEach(silla =>{
     esperaSilla(silla.silla,silla.mesa,sem);
 })
 
-sillasBloqueadas.forEach(silla =>{
+/* sillasBloqueadas.forEach(silla =>{
     //faltan las sillas a bloquear
     const sem = sembrado;
     //console.log('sillas puestas en espera');
-    esperaSilla(silla.silla,silla.mesa,sem);
+    await esperaSilla(silla.silla,silla.mesa,sem);
     bloqueo(silla);
-})
+}) */
+
+for (const silla of sillasBloqueadas) {
+  const sem = sembrado;
+  // El código se detiene aquí hasta que esperaSilla termine
+  await esperaSilla(silla.silla, silla.mesa, sem);
+  // Una vez terminada la espera, se ejecuta el bloqueo
+  bloqueo(silla);
+}
+
+
 
 /**
  * quitando sillas en espera si se cierra la pagina
