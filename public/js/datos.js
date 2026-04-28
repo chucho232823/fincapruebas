@@ -285,13 +285,14 @@ listaMesaSilla.forEach(silla =>{
     bloqueo(silla);
 }) */
 
-for (const silla of sillasBloqueadas) {
-  const sem = sembrado;
-  // El código se detiene aquí hasta que esperaSilla termine
-  await esperaSilla(silla.silla, silla.mesa, sem);
-  // Una vez terminada la espera, se ejecuta el bloqueo
-  bloqueo(silla);
-}
+(async () => {
+    for (const silla of sillasBloqueadas) {
+        const sem = sembrado;     
+        // Ahora el intérprete no se quejará, porque está dentro de un bloque async
+        await esperaSilla(silla.silla, silla.mesa, sem);
+        bloqueo(silla);
+    }
+})();
 
 
 
