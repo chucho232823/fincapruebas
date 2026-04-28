@@ -275,7 +275,7 @@ listaMesaSilla.forEach(silla =>{
     const sem = sembrado;
     //console.log('sillas puestas en espera');
     esperaSilla(silla.silla,silla.mesa,sem);
-})
+});
 
 /* sillasBloqueadas.forEach(silla =>{
     //faltan las sillas a bloquear
