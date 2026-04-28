@@ -86,6 +86,7 @@ function enviarEventoASembrado(eventoSeleccionado) {
   form.remove();
 }
 
+const sillas = [];
 /**
  * Poniendo sillas en espera
  */
@@ -104,7 +105,9 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
     }
 
     const data = await response.json();
+    console.log(`En espera: Mesa: ${numeroMesa} Silla:${letra}`);
     console.log('Filas afectadas: ', data.affectedRows);
+    //conteo de sillas que han sido puestas en espera o bloqueadas para reserva
     if(data.affectedRows === 0){
         const result = await Swal.fire({
           title: 'Finca la colorada dice:',
@@ -253,7 +256,7 @@ const bloqueo = async (silla) => {
     if (!response.ok) {
       throw new Error(`Error al reservar: ${response.statusText}`);
     }
-
+    console.log(`silla bloqueada: Mesa: ${silla.mesa} Silla:${silla.silla}`);
     // Convertimos la respuesta en JSON (si es necesario)
     //const result = await response.json();
     
@@ -267,19 +270,19 @@ const bloqueo = async (silla) => {
   }
 };
 
+listaMesaSilla.forEach(silla =>{
+    //faltan las sillas a bloquear
+    const sem = sembrado;
+    //console.log('sillas puestas en espera');
+    esperaSilla(silla.silla,silla.mesa,sem);
+})
+
 sillasBloqueadas.forEach(silla =>{
     //faltan las sillas a bloquear
     const sem = sembrado;
     //console.log('sillas puestas en espera');
     esperaSilla(silla.silla,silla.mesa,sem);
     bloqueo(silla);
-})
-
-listaMesaSilla.forEach(silla =>{
-    //faltan las sillas a bloquear
-    const sem = sembrado;
-    //console.log('sillas puestas en espera');
-    esperaSilla(silla.silla,silla.mesa,sem);
 })
 
 /**
