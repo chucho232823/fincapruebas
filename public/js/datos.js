@@ -86,7 +86,7 @@ function enviarEventoASembrado(eventoSeleccionado) {
   form.remove();
 }
 
-const sillas = [];
+const cancelacionSillas = [];
 /**
  * Poniendo sillas en espera
  */
@@ -131,11 +131,15 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           cancelarLiberacion = true;
 
           // Ahora sí ejecutamos la función
+          await manejarLiberacionCancelacion();
           enviarEventoASembrado(eventoSeleccionado);
       }
     }
-
     console.log('Silla espera correctamente');
+    cancelacionSillas.push({
+       mesa: numeroMesa,
+       silla: letra
+    })
   } catch (err) {
     console.error('❌ Error en liberarSilla:', err);
   }
@@ -319,6 +323,11 @@ function manejarLiberacion() {
   if (cancelarLiberacion) return;
   liberaTodasLasSillas(sillasBloqueadas,sembrado);
   liberaTodasLasSillas(listaMesaSilla, sembrado);
+}
+
+function manejarLiberacionCancelacion() {
+  if (cancelarLiberacion) return;
+  liberaTodasLasSillas(cancelacionSillas,sembrado);
 }
 
 window.addEventListener('beforeunload', manejarLiberacion);
