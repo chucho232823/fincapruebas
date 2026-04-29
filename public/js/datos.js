@@ -124,12 +124,12 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
               confirmButton: 'alert-boton'
           },
       });
+      console.log("Sillas a liberar por reservas: ", cancelacionSillas);
       if (result.isConfirmed) {
           console.log("despues sw - El usuario hizo clic en Volver al mapa");
           
           overlay.style.display = 'none';
           cancelarLiberacion = true;
-          console.log("Sillas a liberar por reservas: ", cancelacionSillas);
           // Ahora sí ejecutamos la función
           await manejarLiberacionCancelacion();
           enviarEventoASembrado(eventoSeleccionado);
