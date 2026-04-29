@@ -128,8 +128,8 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           console.log("despues sw - El usuario hizo clic en Volver al mapa");
           
           overlay.style.display = 'none';
-          //cancelarLiberacion = true;
-
+          cancelarLiberacion = true;
+          console.log("Sillas a liberar por reservas: ", cancelacionSillas);
           // Ahora sí ejecutamos la función
           await manejarLiberacionCancelacion();
           enviarEventoASembrado(eventoSeleccionado);
@@ -326,7 +326,6 @@ function manejarLiberacion() {
 }
 
 function manejarLiberacionCancelacion() {
-  if (cancelarLiberacion) return;
   liberaTodasLasSillas(cancelacionSillas,sembrado);
 }
 
