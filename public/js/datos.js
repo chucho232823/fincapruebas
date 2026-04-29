@@ -128,7 +128,7 @@ async function esperaSilla( letra, numeroMesa, idEvento ) {
           console.log("despues sw - El usuario hizo clic en Volver al mapa");
           
           overlay.style.display = 'none';
-          cancelarLiberacion = true;
+          //cancelarLiberacion = true;
 
           // Ahora sí ejecutamos la función
           await manejarLiberacionCancelacion();
